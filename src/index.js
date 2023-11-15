@@ -44,22 +44,21 @@ console.log('Proje açıldı!')
 
 /* Kodlar Buradan aşağıya */
 
-const navigationLinks = ['Servisler', 'Ürünler', 'Vizyon', 'Özellikler', 'Hakkımızda', 'İletişim'];
+const navContainer = document.querySelector('nav');
 
-const nav = document.querySelector('header nav');
+navContainer.innerHTML = '';
 
-function createNavLink(text) {
-  const link = document.createElement('a');
-  link.href = '#';
-  link.classList.add('italic');
-  link.textContent = text;
-  return link;
+for (const key in siteContent.nav) {
+  if (siteContent.nav.hasOwnProperty(key)) {
+    const anchorText = siteContent.nav[key];
+    const anchorElement = document.createElement('a');
+    anchorElement.href = '#';
+    anchorElement.textContent = anchorText;
+    anchorElement.classList.add('italic');
+    navContainer.appendChild(anchorElement);
+  }
 }
 
-navigationLinks.forEach((linkText) => {
-  const navLink = createNavLink(linkText);
-  nav.appendChild(navLink);
-});
 
 const logoImg = document.getElementById('logo-img');
 logoImg.setAttribute("src", siteContent.images["logo-img"]);
